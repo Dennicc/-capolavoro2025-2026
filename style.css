@@ -1,0 +1,434 @@
+/* CSS GENERALE E STRUTTURA A SCHERMO INTERO */
+:root {
+    --bg-main: #020617;
+    --bg-card: #0f172a;
+    --bg-box: rgba(30, 41, 59, 0.7);
+    --accent-blue: #38bdf8;
+    --text-primary: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-color: rgba(56, 189, 248, 0.15);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+}
+
+.app-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+/* SIDEBAR - LARGHEZZA FISSA */
+.sidebar {
+    width: 280px;
+    height: 100vh;
+    background-color: #0b0f19;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    padding: 25px 15px;
+    flex-shrink: 0;
+    z-index: 10;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Urbanist', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--accent-blue);
+    margin-bottom: 30px;
+    padding-left: 10px;
+}
+
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.nav-category {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #475569;
+    margin: 15px 0 5px 10px;
+    letter-spacing: 1px;
+}
+
+.nav-item {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 13.5px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+    background: rgba(56, 189, 248, 0.06);
+    color: var(--text-primary);
+}
+
+.nav-item.active {
+    background: rgba(56, 189, 248, 0.12);
+    color: var(--accent-blue);
+    font-weight: 600;
+}
+
+/* CONTENUTO PRINCIPALE - 100% DELLO SPAZIO RIMANENTE */
+.main-content {
+    flex-grow: 1;
+    position: relative;
+    height: 100vh;
+    background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.05) 0%, transparent 70%);
+}
+
+.slide {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    padding: 60px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centratura verticale assoluta */
+    align-items: center;     /* Centratura orizzontale assoluta */
+    text-align: center;      /* Testi centrati per default */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.slide.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* TITOLI E TESTI CENTRATI */
+h2 {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.section-desc {
+    font-size: 18px;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    line-height: 1.5;
+    max-width: 900px;
+    text-align: center;
+}
+
+h3, h4 {
+    font-family: 'Urbanist', sans-serif;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+/* HERO SLIDE */
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 1000px;
+}
+
+.badge {
+    background: rgba(56, 189, 248, 0.1);
+    color: var(--accent-blue);
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+}
+
+.hero-section h1 {
+    font-family: 'Urbanist', sans-serif;
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.lead-text {
+    font-size: 20px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    max-width: 850px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.meta-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 30px;
+}
+
+.meta-item { font-size: 16px; color: var(--text-muted); }
+.meta-item strong { color: var(--text-primary); }
+
+/* GRIGLIE E LAYOUT CENTRATI */
+.grid-2, .grid-3, .layout-split {
+    width: 100%;
+    max-width: 1200px; /* Evita che si allarghi all'infinito sugli schermi enormi */
+    margin: 0 auto;    /* Centra la griglia orizzontalmente */
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.layout-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+/* BOX E CARDS CENTRATI INTERNAMENTE */
+.content-box, .feature-card, .metric-card {
+    background: var(--bg-box);
+    border: 1px solid var(--border-color);
+    padding: 35px 25px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra il contenuto del box */
+    text-align: center;  /* Centra il testo */
+}
+
+.content-box p, .feature-card p, .metric-card p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+}
+
+/* Le liste dentro i box restano allineate a sinistra per leggibilità, ma il blocco lista è centrato */
+.content-box ul {
+    text-align: left;
+    display: inline-block;
+    list-style: none;
+    padding: 0;
+        align-items: center; /* Centra il contenuto del box */
+    text-align: center;  /* Centra il testo */
+}
+
+.content-box li {
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+    position: relative;
+    padding-left: 20px;
+        align-items: center; /* Centra il contenuto del box */
+    text-align: center;  /* Centra il testo */
+}
+.content-box li::before {
+    content: "▪";
+    position: absolute;
+    left: 0;
+    color: var(--accent-blue);
+}
+
+.text-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.text-side p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+/* VISUAL PLACEHOLDERS */
+.visual-side {
+    height: 380px;
+    border-radius: 12px;
+    border: 1px dashed rgba(56, 189, 248, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+.bg-industrial { background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%); }
+.bg-blueprint { background: radial-gradient(circle, #071e3d 0%, #030712 100%); }
+.bg-hardware { background: linear-gradient(135deg, #111827 0%, #1f2937 100%); }
+.bg-radio { background: radial-gradient(circle, #1e293b 0%, #0f172a 100%); }
+.bg-code { background: #050b14; border: 1px solid #1e293b; font-family: monospace; }
+.bg-print { background: linear-gradient(135deg, #311042 0%, #0f172a 100%); }
+
+.huge-icon{
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+}
+
+.stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    margin-top: 20px;
+}
+.stat-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 15px 25px;
+    border-radius: 8px;
+    text-align: center;
+}
+.stat-card h5 { font-size: 28px; color: var(--accent-blue); }
+
+.tags-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+.tag {
+    background: rgba(255,255,255,0.08);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+.bullet-list { text-align: left; display: inline-block; }
+.bullet-list li { font-size: 15px; color: var(--text-muted); margin-bottom: 12px; }
+.bullet-list strong { color: var(--text-primary); }
+
+.card-icon { font-size: 40px; color: var(--accent-blue); margin-bottom: 20px; }
+
+/* TABELLA CENTRATA */
+.table-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(15, 23, 42, 0.4);
+    border-radius: 8px;
+    overflow: hidden;
+}
+.data-table th, .data-table td {
+    padding: 18px 25px;
+    text-align: center; /* Testo tabella centrato */
+    font-size: 15px;
+}
+.data-table th {
+    background-color: rgba(56, 189, 248, 0.1);
+    color: var(--accent-blue);
+}
+.data-table td {
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.metric-card .num { font-size: 56px; color: var(--accent-blue); margin-bottom: 15px; font-weight: 800;}
+
+/* QUOTE CENTRATO */
+.quote-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(56, 189, 248, 0.03);
+    border-top: 4px solid var(--accent-blue);
+    padding: 50px;
+    border-radius: 12px;
+    position: relative;
+    text-align: center;
+}
+.quote-icon { font-size: 40px; color: var(--accent-blue); opacity: 0.3; margin-bottom: 20px;}
+.quote-text { font-size: 20px; line-height: 1.6; font-style: italic; }
+.quote-author { display: block; margin-top: 20px; font-size: 16px; color: var(--accent-blue); font-weight: 600; }
+.footer-logos { display: flex; justify-content: center; gap: 40px; margin-top: 40px; font-size: 16px;}
+
+/* CONTROLLI INFERIORI (FISSATI A FONDO SCHERMO E CENTRATI NELL'AREA CONTENUTO) */
+.global-controls {
+    position: fixed;
+    bottom: 30px;
+    /* Centra i bottoni rispetto allo schermo rimanente: 280px sidebar + metà del resto */
+    left: calc(280px + (100vw - 280px) / 2);
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background: rgba(15, 23, 42, 0.85);
+    padding: 15px 40px;
+    border-radius: 40px;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+.btn {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.2s;
+}
+.btn:hover { color: var(--accent-blue); }
+
+#slide-num {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-muted);
+    min-width: 70px;
+    text-align: center;
+}
